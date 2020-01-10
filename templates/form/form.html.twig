@@ -1,0 +1,14 @@
+{% extends 'form_div_layout.html.twig' %}
+
+{%- block choice_widget_expanded -%}
+    <div {{ block('widget_container_attributes') }}>
+        {%- for child in form %}
+            <div class="pretty-box pretty p-default p-round p-smooth">
+                {{- form_widget(child) -}}
+                <div class="state p-primary">
+                    {{- form_label(child, null, {translation_domain: choice_translation_domain}) -}}
+                </div>
+            </div>
+        {% endfor -%}
+    </div>
+{%- endblock choice_widget_expanded -%}
