@@ -1,0 +1,9 @@
+{
+  "build/app.js": "/build/app.js",
+  "build/deposit.css": "/build/deposit.css",
+  "build/deposit.js": "/build/deposit.js",
+  "build/runtime.js": "/build/runtime.js",
+  "build/vendors~app~deposit.js": "/build/vendors~app~deposit.js",
+  "build/vendors~deposit.css": "/build/vendors~deposit.css",
+  "build/vendors~deposit.js": "/build/vendors~deposit.js"
+}

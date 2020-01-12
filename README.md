@@ -29,14 +29,10 @@ Commandes a lancer
 docker-compose exec node yarn install
 ``
 
-``
-docker-compose exec node yarn watch
-``
-
-
 Depuis le navigateur :
 
-[http://symfony.local/api](http://symfony.local/api)
+[http://symfony.local/api](http://symfony.local/api) (API)
+[http://localhost:8080/](http://localhost:8080/) (FRONT)
 
 
 

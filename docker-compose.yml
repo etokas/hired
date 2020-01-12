@@ -2,24 +2,30 @@ version: '3.7'
 services:
     php:
         container_name: hired-php
+        env_file:
+          - api/.env
         build: docker/php
         volumes:
-          - ./:/var/www/symfony:cached
+          - ./api:/var/www/symfony:cached
         ports:
           - 9000:9001
         links:
           - db
     nginx:
         container_name: hired-nginx
+        env_file:
+          - api/.env
         build: docker/nginx
         ports:
           - ${HTTP_PORT_HOST:-80}:80
         links:
           - php
         volumes:
-          - ./:/var/www/symfony:ro
+          - ./api:/var/www/symfony:ro
     db:
         container_name: hired-database
+        env_file:
+          - api/.env
         image: postgres:11.2
         volumes:
           - ./postgres-data:/var/lib/postgresql/data
@@ -29,12 +35,16 @@ services:
             POSTGRES_USER: symfony
     node:
         build: docker/node
-        working_dir: /var/www/symfony
+        ports:
+          - ${HTTP_PORT_HOST:-8080}:8080
+        env_file:
+          - api/.env
+        working_dir: /var/www/front
         links:
           - php
         depends_on:
           - php
         volumes:
-          - ./:/var/www/symfony
+          - ./front:/var/www/front
         environment:
             NODE_ENV: development
