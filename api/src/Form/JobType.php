@@ -36,12 +36,6 @@ class JobType extends AbstractType
                     'class' => 'editor'
                 ]
             ])
-            ->add('description', TextareaType::class, [
-                'required' => false,
-                'attr' => [
-                    'class' => 'editor'
-                ]
-            ])
             ->add('type', EntityType::class, [
                 'class' => Type::class,
                 'choice_label' => 'name',

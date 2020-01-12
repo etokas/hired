@@ -47,4 +47,12 @@ export default {
     margin: 5px 0;
     font-style: italic;
   }
+
+  ::placeholder, .multiselect__placeholder {
+    color: #97999d;
+    font-size: 15px;
+    font-style: italic;
+    font-weight: bold;
+  }
+
 </style>

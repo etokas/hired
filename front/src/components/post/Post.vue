@@ -8,7 +8,10 @@
                <div class="description-content">
                    <h2>L'offre</h2>
                    <div class="input-block">
-                       <input type="text">
+                       <form-input v-model="job.title"/>
+                   </div>
+                   <div class="multi-select-input">
+                       <type @input-add="getTags" :multiple="true" :tags="[{code: 1, name: 'php'}, {code: 2, name: 'node'}]"/>
                    </div>
                    <button type="submit">Valider</button>
                </div>
@@ -18,16 +21,42 @@
 </template>
 
 <script>
+    import Input from "../form/Input";
+    import Type from "../back/Type";
+
     export default {
+        components: {
+            'form-input' : Input,
+            'type' : Type,
+        },
         data() {
             return {
-
+                job: {
+                    title: '',
+                    tags: [],
+                    description: '',
+                    additionalDescription: '',
+                    localisation: '',
+                    startDate: '',
+                    company: {
+                        name: '',
+                        description: '',
+                        email: ''
+                    },
+                    jobLink: '',
+                    teleworking: ''
+                }
             }
         },
         methods: {
             submitForm: function (e){
                 e.preventDefault();
+                console.log(JSON.stringify(this.job))
 
+            },
+
+            getTags: function (tags) {
+                this.job.tags = tags
             }
         }
     }
@@ -35,6 +64,7 @@
 
 <style scoped>
     @import "~pretty-checkbox/dist/pretty-checkbox.min.css";
+    @import "~vue-multiselect/dist/vue-multiselect.min.css";
 
     #deposit {
         display: flex;
@@ -56,14 +86,6 @@
     .multi-select-input, .editor-block, .pretty-box {
         margin-top: 20px;
     }
-
-    ::placeholder, .multiselect__placeholder {
-        color: #97999d;
-        font-size: 15px;
-        font-style: italic;
-        font-weight: bold;
-    }
-
     .input-block {
         min-height: 40px;
         display: block;

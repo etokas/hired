@@ -4,29 +4,21 @@
      <multiselect
              v-model="values"
              :options="options"
-             :name="name"
              :placeholder="placeHolder"
              :show-labels="false"
              :multiple="multiple"
              :searchable="searchable"
              :showNoOptions="false"
-             @tag="addTag"
              :options-limit="optionsLimit"
              :label="labelName"
              track-by="code"
              :value="values"
              @select="onSelect"
              @search-change="asyncFind"
-
+             @input="addTag"
      >
          <span slot="noResult">Aucun resultat</span>
      </multiselect>
-     <slot name="hidden">
-         <input autocomplete="off" name="job[localisation]" v-if="type === 'city'" v-model="inputValue" type="hidden"/>
-         <select v-else multiple name="job[tags][]" class="hidden">
-             <option v-for="option in getValue" :value="option.code" selected>{{ option.name }}</option>
-         </select>
-     </slot>
  </div>
 </template>
 
@@ -58,11 +50,6 @@
                 type: Number,
                 default: 50
             },
-            name: {
-                type: String,
-                default: ''
-            },
-
             labelName: {
                 type: String,
                 default: 'name'
@@ -73,33 +60,31 @@
                 default: 'Compétences '
             }
         },
+        mounted() {
+            this.init();
+        },
         data () {
             return {
                 values: [],
-                inputValue: null,
                 options: this.tags,
             }
         },
         methods :  {
-            addTag (newTag) {
-                this.values.push(newTag)
+            addTag (tags) {
+                this.$emit('input-add', tags)
             },
 
             onSelect (value) {
                 this.inputValue = value[this.labelName]
             },
-
+            init () {
+                axios.get('http://symfony.local/tags').then(function (tags) {
+                    this.options = tags.data
+                }.bind(this))
+            },
             asyncFind(query) {
                 axios.get('https://geo.api.gouv.fr/communes?nom=' + query + '&fields=nom,code').then(data => (this.options = data.data))
             }
-        },
-        computed: {
-            getValue() {
-                if (!this.multiple && !Array.isArray(this.values)) {
-                    this.values = [this.values];
-                }
-                return this.values;
-            },
-        },
+        }
     }
 </script>

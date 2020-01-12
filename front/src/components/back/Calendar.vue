@@ -7,7 +7,6 @@
                     :class="[`vc-appearance-none vc-text-base vc-text-gray-800 vc-bg-white vc-border vc-border-gray-400 vc-rounded vc-w-full vc-py-2 vc-px-3 vc-leading-tight focus:vc-outline-none focus:vc-shadow`]"
                     v-bind="inputProps"
                     v-on="inputEvents"
-                    name="job[startDate]"
                     autocomplete="off"
                     placeholder="Date de début"
             >

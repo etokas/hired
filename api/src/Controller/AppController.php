@@ -46,4 +46,18 @@ class AppController extends AbstractController
         return $this->json(['ok']);
     }
 
+    /**
+     * @Route("tags")
+     * @return string
+     */
+    public function tags()
+    {
+
+        return $this->json([
+            ['name' => 'php', 'code' => 1],
+            ['name' => 'node', 'code' => 2],
+            ['name' => 'javascript', 'code' => 3],
+        ]);
+    }
+
 }
