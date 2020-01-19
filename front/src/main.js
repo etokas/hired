@@ -1,25 +1,12 @@
-import Vue from 'vue'
-import App from './App.vue'
-import  VueRouter from 'vue-router'
-import Home from "./components/home/Home";
-import Post from "./components/post/Post";
-
+import Vue from 'vue';
+import router from '@/router';
 
 Vue.config.productionTip = false;
 
-Vue.use(VueRouter);
 
-const routes = [
-  { path: '/', component: Home },
-  { path: '/deposer-une-offre', component: Post }
-];
-
-const router = new VueRouter({
-  routes,
-  mode: 'history'
-});
-
-new Vue({
+const vm = new Vue({
+  // eslint-disable-line no-unused-vars
+  el: '#app',
   router,
-  render: h => h(App),
-}).$mount('#app');
+  template: '<router-view />',
+});
