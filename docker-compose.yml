@@ -33,18 +33,3 @@ services:
             POSTGRES_PASSWORD: symfony
             POSTGRES_DB: symfony
             POSTGRES_USER: symfony
-    node:
-        build: docker/node
-        ports:
-          - ${HTTP_PORT_HOST:-8080}:8080
-        env_file:
-          - api/.env
-        working_dir: /var/www/front
-        links:
-          - php
-        depends_on:
-          - php
-        volumes:
-          - ./front:/var/www/front
-        environment:
-            NODE_ENV: development

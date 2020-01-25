@@ -4,15 +4,15 @@
 namespace App\Manager;
 
 
-use App\Entity\Job;
-use App\Repository\JobRepository;
+use App\Entity\Player;
+use App\Repository\PlayerRepository;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
-class JobManager
+class PlayerManager
 {
 
     /**
-     * @var JobRepository
+     * @var PlayerRepository
      */
     private $repository;
     /**
@@ -22,7 +22,7 @@ class JobManager
 
     public function __construct
     (
-        JobRepository $repository,
+        PlayerRepository $repository,
         SluggerInterface $slugger
     )
     {
@@ -30,7 +30,7 @@ class JobManager
         $this->slugger = $slugger;
     }
 
-    public function create(Job $job)
+    public function create(Player $job)
     {
 
     }

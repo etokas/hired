@@ -13,7 +13,6 @@
 /node_modules/
 /public/build/
 npm-debug.log
-yarn-error.log
 ###< symfony/webpack-encore-bundle ###
 
 node_modules/
@@ -23,4 +22,5 @@ composer.lock
 supervisord.log
 supervisord.pid
 postgres-data/
-symfony.lock
+symfony.lockpackage-lock.json
+/front/package-lock.json
