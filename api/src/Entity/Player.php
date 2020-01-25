@@ -5,9 +5,9 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\PlayerRepository")
  */
-class Type
+class Player
 {
     /**
      * @ORM\Id()
@@ -31,15 +31,10 @@ class Type
         return $this->name;
     }
 
-    public function setName(?string $name): self
+    public function setName(string $name): self
     {
         $this->name = $name;
 
         return $this;
-    }
-
-    public function __toString()
-    {
-        return $this->name;
     }
 }

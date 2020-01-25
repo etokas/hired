@@ -2,12 +2,11 @@
 
 namespace App\Controller;
 
-use App\Entity\Job;
-use App\Form\JobType;
-use App\Manager\JobManager;
+use App\Entity\Player;
+use App\Form\PlayerType;
+use App\Manager\PlayerManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class AppController extends AbstractController
@@ -23,13 +22,14 @@ class AppController extends AbstractController
     /**
      * @Route("deposer-une-offre", name="job_post")
      * @param Request $request
-     * @param JobManager $manager
+     * @param PlayerManager $manager
+     *
      * @return string
      */
-    public function post(Request $request, JobManager $manager)
+    public function post(Request $request, PlayerManager $manager)
     {
-        $job = new Job();
-        $form = $this->createForm(JobType::class, $job);
+        $job = new Player();
+        $form = $this->createForm(PlayerType::class, $job);
 
         if ($request->isXmlHttpRequest() && $request->isMethod('post')) {
             $form->submit($request->request->get($form->getName()));
@@ -47,16 +47,16 @@ class AppController extends AbstractController
     }
 
     /**
-     * @Route("tags")
+     * @Route("players")
      * @return string
      */
-    public function tags()
+    public function players()
     {
 
         return $this->json([
-            ['name' => 'php', 'code' => 1],
-            ['name' => 'node', 'code' => 2],
-            ['name' => 'javascript', 'code' => 3],
+            ['id' => 1, 'name' => 'Neymar', 'age' => '24'],
+            ['id' => 2,'name' => 'Cavani', 'age' => '23'],
+            ['id' => 3,'name' => 'Mbappe', 'age' => '20'],
         ]);
     }
 
