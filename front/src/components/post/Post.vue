@@ -4,14 +4,14 @@
       <h2>Déposer votre offre d'emploi</h2>
     </section>
     <section class="form-content">
-      <form @submit="submitForm($event)" method="post">
+      <form @submit.prevent="submitForm" method="post">
         <div class="description-content">
           <h2>L'offre</h2>
           <div class="input-block">
             <form-input v-model="job.title"/>
           </div>
           <div class="multi-select-input">
-            <type @input-add="getTags" :multiple="true" :tags="[{code: 1, name: 'php'}, {code: 2, name: 'node'}]"/>
+            <Type @input-add="getTags" :multiple="true" :tags="[{code: 1, name: 'php'}, {code: 2, name: 'node'}]"/>
           </div>
           <button type="submit">Valider</button>
         </div>
@@ -21,13 +21,12 @@
 </template>
 
 <script>
-import Input from "../form/Input";
-import Type from "../back/Type";
+import Input from '@/components/form/Input';
+import Type from '@/components/back/Type';
 
 export default {
   components: {
-    'form-input': Input,
-    'type': Type,
+    'form-input': Input, Type,
   },
   data() {
     return {
@@ -41,24 +40,23 @@ export default {
         company: {
           name: '',
           description: '',
-          email: ''
+          email: '',
         },
         jobLink: '',
-        teleworking: ''
-      }
-    }
+        teleworking: '',
+      },
+    };
   },
   methods: {
-    submitForm: function (e) {
-      e.preventDefault();
+    submitForm() {
+      // eslint-disable-next-line no-console
       console.log(JSON.stringify(this.job));
     },
-
-    getTags: function (tags) {
-      this.job.tags = tags
-    }
-  }
-}
+    getTags(tags) {
+      this.job.tags = tags;
+    },
+  },
+};
 </script>
 
 <style scoped>
