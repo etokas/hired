@@ -1,6 +1,6 @@
 # front
 
-> Hired front side
+> player recruit
 
 ## Build Setup
 
