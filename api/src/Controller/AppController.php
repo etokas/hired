@@ -47,7 +47,7 @@ class AppController extends AbstractController
     }
 
     /**
-     * @Route("players")
+     * @Route("api/players")
      * @return string
      */
     public function players()
